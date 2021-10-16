@@ -75,7 +75,7 @@ CREATE TABLE AlertType(
     TriggerCondition NVARCHAR(200) NOT NULL,
     TriggerValue INT NOT NULL,
     Details NVARCHAR(MAX) NOT NULL,
-    CONSTRAINT PK_MeasurementID PRIMARY KEY (MeasurementID),
+    CONSTRAINT PK_AlertTypeID PRIMARY KEY (AlertTypeID),
     CONSTRAINT FK_AlertTrigger_Alert FOREIGN KEY (AlertTrigger) REFERENCES Alert
 );
 
