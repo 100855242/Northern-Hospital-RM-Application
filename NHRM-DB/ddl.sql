@@ -76,7 +76,7 @@ CREATE TABLE AlertType(
     TriggerValue INT NOT NULL,
     Details NVARCHAR(MAX) NOT NULL,
     CONSTRAINT PK_MeasurementID PRIMARY KEY (MeasurementID),
-    CONSTRAINT FK_AlertTrigger FOREIGN KEY (AlertTrigger)
+    CONSTRAINT FK_AlertTrigger_Alert FOREIGN KEY (AlertTrigger) REFERENCES Alert
 );
 
 GO
@@ -110,7 +110,7 @@ CREATE TABLE SurveyQuestion(
     Question NVARCHAR(MAX) NOT NULL,
     CONSTRAINT PK_SurveyQuestion PRIMARY KEY (MeasurementID, DataPointNumber),
     CONSTRAINT FK_SurveyQuestion_DataPoint FOREIGN KEY (MeasurementID, DataPointNumber) REFERENCES DataPoint (MeasurementID, DataPointNumber)
-)
+);
 
 GO
 
