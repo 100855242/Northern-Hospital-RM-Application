@@ -64,6 +64,8 @@ CREATE TABLE Alert(
     [Status] NVARCHAR(10) NOT NULL,
     Notes NVARCHAR(250),
     CONSTRAINT PK_AlertID PRIMARY KEY (AlertID),
+    CONSTRAINT FK_Alert_Patient FOREIGN KEY (URNumber) REFERENCES Patient,
+    CONSTRAINT FK_Alert_Staff FOREIGN KEY (StaffID) REFERENCES Staff,
     CONSTRAINT AlertSTATUS CHECK (STATUS IN ('DISMISSED','ACTIONED'))
 );
 
@@ -76,7 +78,7 @@ CREATE TABLE AlertType(
     TriggerValue INT NOT NULL,
     Details NVARCHAR(MAX) NOT NULL,
     CONSTRAINT PK_AlertTypeID PRIMARY KEY (AlertTypeID),
-    CONSTRAINT FK_AlertTrigger_Alert FOREIGN KEY (AlertTrigger) REFERENCES Alert
+    CONSTRAINT FK_AlertType_Alert FOREIGN KEY (AlertTrigger) REFERENCES Alert
 );
 
 GO
