@@ -48,6 +48,37 @@ DROP TABLE IF EXISTS ResourceType;
 
 DROP TABLE IF EXISTS Measurement;
 
+DROP TABLE IF EXISTS Alert;
+
+DROP TABLE IF EXISTS AlertType;
+
+GO
+
+CREATE TABLE Alert(
+    AlertID INT IDENTITY(1,1) NOT NULL,
+    StaffID INT NOT NULL,
+    URNumber INT NOT NULL,
+    AlertTrigger NVARCHAR(50) NOT NULL,    -- "Called Emergency" or "Missing Measurement"
+    DateRaised DATETIME NOT NULL,
+    DateActioned DATETIME NOT NULL,
+    [Status] NVARCHAR(10) NOT NULL,
+    Notes NVARCHAR(250),
+    CONSTRAINT PK_AlertID PRIMARY KEY (AlertID),
+    CONSTRAINT AlertSTATUS CHECK (STATUS IN ('DISMISSED','ACTIONED'))   -- Each row entered must contain [STATUS] to complete
+);
+
+GO
+
+CREATE TABLE AlertType(
+    AlertTypeID INT IDENTITY(1,1) NOT NULL,
+    AlertTrigger NVARCHAR(50) NOT NULL,
+    TriggerCondition NVARCHAR(200) NOT NULL,
+    TriggerValue INT NOT NULL,
+    Details NVARCHAR(MAX) NOT NULL,
+    CONSTRAINT PK_MeasurementID PRIMARY KEY (MeasurementID),
+    CONSTRAINT FK_AlertTrigger FOREIGN KEY (AlertTrigger)
+);
+
 GO
 
 CREATE TABLE Measurement(
