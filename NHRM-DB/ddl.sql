@@ -58,13 +58,13 @@ CREATE TABLE Alert(
     AlertID INT IDENTITY(1,1) NOT NULL,
     StaffID INT NOT NULL,
     URNumber INT NOT NULL,
-    AlertTrigger NVARCHAR(50) NOT NULL,    -- "Called Emergency" or "Missing Measurement"
+    AlertTrigger NVARCHAR(50) NOT NULL,
     DateRaised DATETIME NOT NULL,
     DateActioned DATETIME NOT NULL,
     [Status] NVARCHAR(10) NOT NULL,
     Notes NVARCHAR(250),
     CONSTRAINT PK_AlertID PRIMARY KEY (AlertID),
-    CONSTRAINT AlertSTATUS CHECK (STATUS IN ('DISMISSED','ACTIONED'))   -- Each row entered must contain [STATUS] to complete
+    CONSTRAINT AlertSTATUS CHECK (STATUS IN ('DISMISSED','ACTIONED'))
 );
 
 GO
